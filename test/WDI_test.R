@@ -2,9 +2,11 @@
 rm(list=ls())
 library(RJSONIO)
 library(WDI)
+library(ggplot2)
 
 # Country list
 co = c('IN', 'US', 'BR', 'CN')
+co1 = c('IN', 'CN')
 
 # Cache
 cache = WDIcache()
@@ -19,8 +21,9 @@ x = WDI(country='US', indicator='NY.GDP.PCAP.KD', start=1960, end=2005)
 head(x)
 
 # 3 countries 1 indicator
-x = WDI(country=c('CA', 'MX', 'US'), indicator='NY.GDP.PCAP.PP.KD', start=1960, end=2005)
+x = WDI(country=co1, indicator='NY.GDP.PCAP.PP.KD', start=1990, end=2011)
 head(x)
+ggplot(x, aes(year, NY.GDP.PCAP.PP.KD)) + geom_line(stat="identity", aes(color=country))
 
 # 1 bad country (should raise warning) 
 x = WDI(country=c('BADCOUNTRY_one', 'BADCOUNTRY_two', 'CA', 'MX', 'US'), indicator='NY.GDP.PCAP.KD', start=1960, end=2005)
