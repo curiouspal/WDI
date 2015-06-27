@@ -1,9 +1,10 @@
 # Warning no longer works
 rm(list=ls())
+library(RJSONIO)
 library(WDI)
 
 # Country list
-co = c('IN', 'US', 'BR', 'ZW')
+co = c('IN', 'US', 'BR', 'CN')
 
 # Cache
 cache = WDIcache()
@@ -18,7 +19,7 @@ x = WDI(country='US', indicator='NY.GDP.PCAP.KD', start=1960, end=2005)
 head(x)
 
 # 3 countries 1 indicator
-x = WDI(country=c('CA', 'MX', 'US'), indicator='NY.GDP.PCAP.KD', start=1960, end=2005)
+x = WDI(country=c('CA', 'MX', 'US'), indicator='NY.GDP.PCAP.PP.KD', start=1960, end=2005)
 head(x)
 
 # 1 bad country (should raise warning) 
@@ -55,3 +56,4 @@ x = WDI(country=co, extra=TRUE)
 
 # iso3c and iso2c
 x = WDI(country=c('US', 'CAN'))
+
