@@ -22,8 +22,13 @@ head(x)
 
 # 3 countries 1 indicator
 x = WDI(country=co1, indicator='NY.GDP.PCAP.PP.KD', start=1990, end=2011)
+
 head(x)
 ggplot(x, aes(year, NY.GDP.PCAP.PP.KD)) + geom_line(stat="identity", aes(color=country))
+
+
+y = WDI(country=co, indicator='EN.CO2.ETOT.MT', start=1960, end=2011)
+ggplot(y, aes(year, EN.CO2.ETOT.MT)) + geom_line(stat="identity", aes(color=country))
 
 # 1 bad country (should raise warning) 
 x = WDI(country=c('BADCOUNTRY_one', 'BADCOUNTRY_two', 'CA', 'MX', 'US'), indicator='NY.GDP.PCAP.KD', start=1960, end=2005)
